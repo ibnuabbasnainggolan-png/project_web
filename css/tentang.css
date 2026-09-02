@@ -36,6 +36,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin-top: 70px; /* memberi ruang untuk header situs yang fixed */
 }
 
 h1,
@@ -75,7 +76,7 @@ ul {
 
 /* ---------------------- 2. HEADER, NAVIGASI & FOOTER ---------------------- */
 .header-situs {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 50;
   background-color: rgba(20, 17, 31, 0.9);
@@ -371,6 +372,7 @@ ul {
   border-radius: 10px;
   padding: 20px 10px;
   background-color: #25164a;
+  border-color: #e5e827;
 }
 
 .kartu-statistik span {
@@ -389,7 +391,7 @@ ul {
   color: #c1bfc7;
 }
 
-.kartu-statistik  a:hover{
+.kartu-statistik :hover{
   color: #e8b84b;
   text-decoration: underline;
 }

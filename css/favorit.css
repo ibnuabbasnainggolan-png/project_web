@@ -37,6 +37,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin-top: 70px; /* memberi ruang untuk header situs yang fixed */
 }
 
 h1,
@@ -71,7 +72,7 @@ ul {
 
 /* ---------------------- 2. HEADER, NAVIGASI & FOOTER ---------------------- */
 .header-situs {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 50;
   background-color: rgba(20, 17, 31, 0.9);
