@@ -8,13 +8,13 @@
    BAGIAN 1: NAVIGASI & STATUS LOGIN
    ===================================================================================== */
 
-const KUNCI_STATUS_LOGIN = "buzzlightyearMusicStatusLogin";
-const KUNCI_HALAMAN_TUJUAN = "buzzlightyearMusicHalamanTujuan";
-const KUNCI_AKUN_TERDAFTAR = "buzzlightyearAkunTerdaftar";
+const kunciStatusLogin = "buzzlightyearMusicStatusLogin";
+const kunciHalamanTujuan = "buzzlightyearMusicHalamanTujuan";
+const kunciAkunTerdaftar = "buzzlightyearAkunTerdaftar";
 
 function apakahSudahLogin() {
   try {
-    const dataTersimpan = localStorage.getItem(KUNCI_STATUS_LOGIN);
+    const dataTersimpan = localStorage.getItem(kunciStatusLogin);
     if (!dataTersimpan) return false;
     const status = JSON.parse(dataTersimpan);
     return Boolean(status && status.login === true);
@@ -26,7 +26,7 @@ function apakahSudahLogin() {
 
 function ambilNamaPenggunaLogin() {
   try {
-    const dataTersimpan = localStorage.getItem(KUNCI_STATUS_LOGIN);
+    const dataTersimpan = localStorage.getItem(kunciStatusLogin);
     if (!dataTersimpan) return "";
     const status = JSON.parse(dataTersimpan);
     return status && status.nama ? status.nama : "";
@@ -108,7 +108,7 @@ function aturFormRegister() {
         namaLengkap: namaLengkap,
         kataSandi: kataSandi
       };
-      localStorage.setItem(KUNCI_AKUN_TERDAFTAR, JSON.stringify(akunBaru));
+      localStorage.setItem(kunciAkunTerdaftar, JSON.stringify(akunBaru));
 
       tampilkanStatusAuth(
         pesanStatus,

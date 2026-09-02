@@ -9,11 +9,11 @@
    ===================================================================================== */
 
 // Tempat menyimpan status login (sudah login atau belum, siapa namanya)
-const KUNCI_STATUS_LOGIN = "buzzlightyearMusicStatusLogin";
+const kunciStatusLogin = "buzzlightyearMusicStatusLogin";
 
 // Tempat menyimpan sementara "halaman apa yang tadinya ingin dituju
 // sebelum diminta login" (pakai sessionStorage, cuma diingat 1 kunjungan)
-const KUNCI_HALAMAN_TUJUAN = "buzzlightyearMusicHalamanTujuan";
+const kunciHalamanTujuan = "buzzlightyearMusicHalamanTujuan";
 
 /**
  * apakahSudahLogin()
@@ -21,7 +21,7 @@ const KUNCI_HALAMAN_TUJUAN = "buzzlightyearMusicHalamanTujuan";
  */
 function apakahSudahLogin() {
   try {
-    const dataTersimpan = localStorage.getItem(KUNCI_STATUS_LOGIN);
+    const dataTersimpan = localStorage.getItem(kunciStatusLogin);
 
     if (!dataTersimpan) {
       return false;
@@ -41,7 +41,7 @@ function apakahSudahLogin() {
  */
 function ambilNamaPenggunaLogin() {
   try {
-    const dataTersimpan = localStorage.getItem(KUNCI_STATUS_LOGIN);
+    const dataTersimpan = localStorage.getItem(kunciStatusLogin);
 
     if (!dataTersimpan) {
       return "";
@@ -59,7 +59,7 @@ function ambilNamaPenggunaLogin() {
  * Menghapus status login dari localStorage (proses logout/Keluar).
  */
 function keluarDariAkun() {
-  localStorage.removeItem(KUNCI_STATUS_LOGIN);
+  localStorage.removeItem(kunciStatusLogin);
 }
 
 /**
@@ -70,7 +70,7 @@ function keluarDariAkun() {
  * TANPA login terlebih dulu.
  */
 function simpanHalamanTujuanSetelahLogin(namaBerkasHtml) {
-  sessionStorage.setItem(KUNCI_HALAMAN_TUJUAN, namaBerkasHtml);
+  sessionStorage.setItem(kunciHalamanTujuan, namaBerkasHtml);
 }
 
 /**

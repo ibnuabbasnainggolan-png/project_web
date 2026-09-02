@@ -18,13 +18,13 @@
    sungguhan buat menyimpan akun pengguna. */
 
 // Tempat menyimpan status login (sudah login atau belum, siapa namanya)
-const KUNCI_STATUS_LOGIN = "buzzlightyearMusicStatusLogin";
+const kunciStatusLogin = "buzzlightyearMusicStatusLogin";
 
 // Tempat menyimpan sementara "halaman apa yang tadinya ingin dituju
 // sebelum diminta login" — pakai sessionStorage karena cuma perlu
 // diingat selama satu kali kunjungan saja (bukan selamanya seperti
 // localStorage)
-const KUNCI_HALAMAN_TUJUAN = "buzzlightyearMusicHalamanTujuan";
+const kunciHalamanTujuan = "buzzlightyearMusicHalamanTujuan";
 
 
 /* ------------------------------------------------------------------
@@ -43,7 +43,7 @@ function apakahSudahLogin() {
   try {
     // getItem() mengambil teks (string) yang tersimpan di localStorage.
     // Kalau belum pernah diisi, hasilnya adalah null.
-    const dataTersimpan = localStorage.getItem(KUNCI_STATUS_LOGIN);
+    const dataTersimpan = localStorage.getItem(kunciStatusLogin);
 
     // Kalau belum ada data sama sekali, otomatis belum login
     if (!dataTersimpan) {
@@ -71,7 +71,7 @@ function apakahSudahLogin() {
  */
 function ambilNamaPenggunaLogin() {
   try {
-    const dataTersimpan = localStorage.getItem(KUNCI_STATUS_LOGIN);
+    const dataTersimpan = localStorage.getItem(kunciStatusLogin);
 
     if (!dataTersimpan) {
       return "";
@@ -106,7 +106,7 @@ function tandaiSudahLogin(nama, email) {
 
   // Objek JavaScript harus diubah dulu jadi teks JSON sebelum disimpan
   // ke localStorage, memakai JSON.stringify()
-  localStorage.setItem(KUNCI_STATUS_LOGIN, JSON.stringify(status));
+  localStorage.setItem(kunciStatusLogin, JSON.stringify(status));
 }
 
 /**
@@ -114,7 +114,7 @@ function tandaiSudahLogin(nama, email) {
  * Menghapus status login dari localStorage (proses logout/Keluar).
  */
 function keluarDariAkun() {
-  localStorage.removeItem(KUNCI_STATUS_LOGIN);
+  localStorage.removeItem(kunciStatusLogin);
 }
 
 
@@ -132,15 +132,15 @@ function keluarDariAkun() {
       diarahkan balik ke "musik.html", bukan ke halaman lain. */
 
 function simpanHalamanTujuanSetelahLogin(namaBerkasHtml) {
-  sessionStorage.setItem(KUNCI_HALAMAN_TUJUAN, namaBerkasHtml);
+  sessionStorage.setItem(kunciHalamanTujuan, namaBerkasHtml);
 }
 
 function ambilDanHapusHalamanTujuan() {
   // Baca dulu nilainya...
-  const tujuan = sessionStorage.getItem(KUNCI_HALAMAN_TUJUAN);
+  const tujuan = sessionStorage.getItem(kunciHalamanTujuan);
   // ...lalu langsung hapus, supaya tidak "nyangkut" terpakai lagi di
   // kunjungan berikutnya secara tidak sengaja
-  sessionStorage.removeItem(KUNCI_HALAMAN_TUJUAN);
+  sessionStorage.removeItem(kunciHalamanTujuan);
   return tujuan;
 }
 

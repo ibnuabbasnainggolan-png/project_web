@@ -8,13 +8,13 @@
    BAGIAN 1: NAVIGASI & STATUS LOGIN
    ===================================================================================== */
 
-const KUNCI_STATUS_LOGIN = "buzzlightyearMusicStatusLogin";
-const KUNCI_HALAMAN_TUJUAN = "buzzlightyearMusicHalamanTujuan";
-const KUNCI_AKUN_TERDAFTAR = "buzzlightyearAkunTerdaftar";
+const kunciStatusLogin = "buzzlightyearMusicStatusLogin";
+const kunciHalamanTujuan = "buzzlightyearMusicHalamanTujuan";
+const kunciAkunTerdaftar = "buzzlightyearAkunTerdaftar";
 
 function apakahSudahLogin() {
   try {
-    const dataTersimpan = localStorage.getItem(KUNCI_STATUS_LOGIN);
+    const dataTersimpan = localStorage.getItem(kunciStatusLogin);
     if (!dataTersimpan) return false;
     const status = JSON.parse(dataTersimpan);
     return Boolean(status && status.login === true);
@@ -26,7 +26,7 @@ function apakahSudahLogin() {
 
 function ambilNamaPenggunaLogin() {
   try {
-    const dataTersimpan = localStorage.getItem(KUNCI_STATUS_LOGIN);
+    const dataTersimpan = localStorage.getItem(kunciStatusLogin);
     if (!dataTersimpan) return "";
     const status = JSON.parse(dataTersimpan);
     return status && status.nama ? status.nama : "";
@@ -40,16 +40,16 @@ function tandaiSudahLogin(namaLengkap) {
     login: true,
     nama: namaLengkap ? namaLengkap.trim() : ""
   };
-  localStorage.setItem(KUNCI_STATUS_LOGIN, JSON.stringify(status));
+  localStorage.setItem(kunciStatusLogin, JSON.stringify(status));
 }
 
 function keluarDariAkun() {
-  localStorage.removeItem(KUNCI_STATUS_LOGIN);
+  localStorage.removeItem(kunciStatusLogin);
 }
 
 function ambilDanHapusHalamanTujuan() {
-  const tujuan = sessionStorage.getItem(KUNCI_HALAMAN_TUJUAN);
-  sessionStorage.removeItem(KUNCI_HALAMAN_TUJUAN);
+  const tujuan = sessionStorage.getItem(kunciHalamanTujuan);
+  sessionStorage.removeItem(kunciHalamanTujuan);
   return tujuan;
 }
 
@@ -102,7 +102,7 @@ function aturFormLogin() {
     const namaLengkap = inputNama ? inputNama.value.trim() : "";
     const kataSandi = inputSandi ? inputSandi.value : "";
 
-    const dataTerdaftarRaw = localStorage.getItem(KUNCI_AKUN_TERDAFTAR);
+    const dataTerdaftarRaw = localStorage.getItem(kunciAkunTerdaftar);
     const dataAkun = dataTerdaftarRaw ? JSON.parse(dataTerdaftarRaw) : null;
 
     // Pengecekan ke akun terdaftar di localStorage
