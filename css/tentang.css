@@ -78,9 +78,11 @@ ul {
 .header-situs {
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 50;
   background-color: rgba(20, 17, 31, 0.9);
   backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 .header-situs a span {
