@@ -1,0 +1,153 @@
+/* =====================================================================
+   MEDIA.CSS
+   ---------------------------------------------------------------------
+
+/* =====================================================================
+   1. LAYAR TABLET (960px ke bawah)
+   ===================================================================== */
+
+/* --- tentang.html: layout dua kolom jadi satu kolom, kartu statistik
+   jadi 2 kolom --- */
+@media (max-width: 960px) {
+  .tata-letak-tentang {
+    grid-template-columns: 1fr;
+  }
+
+  .kisi-statistik {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* =====================================================================
+   2. LAYAR HP (720px ke bawah)
+   ===================================================================== */
+
+/* --- SEMUA HALAMAN: navigasi di layar HP ---
+   <nav> (daftar menu) dan .grup-akun (Masuk/Daftar atau sapaan nama
+   pengguna) dibungkus jadi SATU panel, yaitu .panel-menu-mobile
+   (lihat markup header di tiap halaman .html). Tombol hamburger
+   (.tombol-menu-mobile) menambahkan class "menu-terbuka" pada
+   <header> lewat fungsi aturMenuMobile() (ada di setiap file JS halaman) -- begitu class itu aktif, panel ini
+   langsung tampil sebagai satu dropdown vertikal berisi menu + akun. */
+@media (max-width: 720px) {
+  .tombol-menu-mobile {
+    display: flex;
+  }
+
+  .panel-menu-mobile {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    background: #14111f;
+    border-bottom: 1px solid #332c4a;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 24px 20px;
+    gap: 14px;
+  }
+
+  .header-situs.menu-terbuka .panel-menu-mobile {
+    display: flex;
+  }
+
+  .daftar-menu {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .grup-akun {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid #332c4a;
+  }
+
+  .tautan-menu {
+    text-align: center;
+  }
+
+  .isi-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* --- index.html: jarak dalam kotak hero dikecilkan, dan tombol-tombol
+   hero (Jelajahi Musik/Buat Playlist/Lihat Favoritku) ditumpuk penuh
+   satu kolom supaya tidak sempit/terpotong di layar HP --- */
+@media (max-width: 720px) {
+  .hero-lapisan {
+    padding: 56px 20px 32px;
+  }
+
+  .grup-tombol-hero {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .grup-tombol-hero .tombol-utama,
+  .grup-tombol-hero .tombol-sekunder {
+    width: 100%;
+    text-align: center;
+    padding: 13px 20px;
+  }
+}
+
+/* --- favorit.html: baris favorit boleh turun ke baris baru kalau
+   sempit, begitu juga tombol-tombol aksinya (Putar/+ Playlist/Hapus) --- */
+@media (max-width: 720px) {
+  .baris-favorit {
+    flex-wrap: wrap;
+  }
+
+  .aksi-baris-favorit {
+    flex-wrap: wrap;
+  }
+}
+
+/* --- playlist.html: kartu playlist jadi satu kolom di layar sempit --- */
+@media (max-width: 720px) {
+  .daftar-playlist {
+    grid-template-columns: 1fr;
+  }
+
+  .kepala-kartu-playlist {
+    flex-wrap: wrap;
+  }
+}
+
+/* --- register.html: kolom "Kata Sandi" & "Konfirmasi Sandi" yang
+   tadinya berdampingan, turun jadi satu kolom --- */
+@media (max-width: 720px) {
+  .baris-dua-kolom {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =====================================================================
+   3. LAYAR HP KECIL (480px ke bawah)
+   ===================================================================== */
+
+/* --- SEMUA HALAMAN: kurangi jarak tepi (padding) pembungkus konten,
+   supaya konten dapat ruang lebih lega di layar HP kecil (mis. iPhone
+   SE, 360-400px lebar) --- */
+@media (max-width: 480px) {
+  .wadah {
+    padding: 16px;
+  }
+}
+
+/* --- tentang.html: kartu statistik tetap 2 kolom (lebih rapat) --- */
+@media (max-width: 480px) {
+  .kisi-statistik {
+    grid-template-columns: 1fr;
+  }
+}

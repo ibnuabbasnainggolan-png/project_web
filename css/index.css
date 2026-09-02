@@ -1,0 +1,359 @@
+/* =====================================================================
+   INDEX.CSS - khusus untuk index.html (halaman Beranda)
+   ---------------------------------------------------------------------
+
+/* ---------------------- 1. RESET & ELEMEN DASAR ---------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Jaring pengaman anti-overflow: kunci lebar html/body supaya TIDAK ADA
+   elemen apa pun (gambar, modal, dll) yang bisa membuat halaman bisa
+   digeser ke samping (scroll horizontal) di layar HP. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Jaring pengaman untuk SEMUA gambar: gambar tidak boleh melebihi lebar
+   kontainernya sendiri, walau ukuran asli file gambarnya lebih besar.
+   Elemen yang butuh ukuran gambar berbeda tinggal menimpanya sendiri
+   (contoh: .sampul-musik img, .merek-navigasi img). */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  background: #14111f url("../img/background.jpg") fixed;
+  background-size: cover;
+  color: #f5f1e8;
+  font-family: "Plus Jakarta Sans", -apple-system, sans-serif;
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Fraunces", Georgia, serif;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Pembungkus lebar konten standar */
+.wadah {
+  width: 100%;
+  max-width: 1180px;
+  margin: auto;
+  padding: 24px;
+}
+
+/* Kelas untuk menyembunyikan elemen, dipasang/dilepas lewat JavaScript
+   (js/status-login.js) tergantung status login pengguna */
+.tersembunyi {
+  display: none !important;
+}
+
+
+/* ---------------------- 2. HEADER, NAVIGASI & FOOTER ---------------------- */
+.header-situs {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(20, 17, 31, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.header-situs a span {
+  color: #e8b84b;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: 5px 5px 20px cyan;
+}
+
+.navigasi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.merek-navigasi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700px;
+}
+
+.merek-navigasi img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.daftar-menu,
+.grup-akun {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tautan-menu {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  color: #a89fc4;
+  transition: 0.2s ease;
+}
+
+.tautan-menu:hover {
+  background-color: #272238;
+  color: #f5f1e8;
+}
+
+.tautan-menu[aria-current="page"] {
+  background-color: #e8b84b;
+  color: #1a1626;
+  font-weight: 600;
+}
+
+/* Sapaan "Hai, <nama>" pengganti tombol Masuk/Daftar setelah login,
+   diatur oleh js/status-login.js */
+.sapaan-akun {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  color: #a89fc4;
+  white-space: nowrap;
+}
+
+/* Pembungkus <nav> (daftar-menu) + grup-akun jadi satu grup, supaya di
+   layar HP keduanya bisa ditampilkan/disembunyikan bersamaan sebagai
+   satu panel dropdown (lihat media.css & fungsi aturMenuMobile() di file JS halaman ini) */
+.panel-menu-mobile {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+/* Tombol hamburger (3 garis) untuk membuka/menutup menu di layar HP.
+   Disembunyikan di layar besar (desktop); baru dimunculkan lewat
+   media.css saat lebar layar <= 720px. Diatur oleh fungsi aturMenuMobile() di file JS halaman ini. */
+.tombol-menu-mobile {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.tombol-menu-mobile:hover {
+  background-color: #272238;
+}
+
+.tombol-menu-mobile span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 0 auto;
+  background-color: #f5f1e8;
+  border-radius: 2px;
+  transition: 0.2s ease;
+}
+
+/* Saat menu terbuka, garis hamburger berubah bentuk jadi silang (X) */
+.header-situs.menu-terbuka .tombol-menu-mobile span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.header-situs.menu-terbuka .tombol-menu-mobile span:nth-child(2) {
+  opacity: 0;
+}
+
+.header-situs.menu-terbuka .tombol-menu-mobile span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.footer-situs {
+  border-top: 1px solid #332c4a;
+  margin-top: auto;
+  padding: 5px;
+  background-color: #14111f;
+}
+
+.isi-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.isi-footer p,
+.tautan-footer a {
+  color: #a89fc4;
+  font-size: 0.85rem;
+}
+
+.tautan-footer {
+  display: flex;
+  gap: 18px;
+}
+
+.tautan-footer a:hover {
+  color: #e8b84b;
+}
+
+
+/* ---------------------- 3. TOMBOL & TAUTAN ---------------------- */
+
+/* Tombol "terisi" (latar warna penuh) yang dipakai di halaman ini:
+   .tombol-utama       -> tombol "Jelajahi Musik" di hero
+   .tombol-kecil-isi   -> tombol "Daftar" di header */
+.tombol-utama,
+.tombol-kecil-isi {
+  background-color: #e8b84b;
+  color: #1a1626;
+  font-weight: 700;
+  border-radius: 999px;
+  transition: 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tombol-utama {
+  padding: 14px 26px;
+}
+
+.tombol-kecil-isi {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+.tombol-utama:hover,
+.tombol-kecil-isi:hover {
+  background-color: #c9993a;
+}
+
+/* Tombol/tautan "garis" (outline) yang dipakai di halaman ini:
+   .tombol-sekunder    -> tombol "Lihat Favoritku" di hero
+   .tombol-kecil-garis -> tombol "Masuk" & "Keluar" di header */
+.tombol-sekunder,
+.tombol-kecil-garis {
+  border: 1px solid #332c4a;
+  color: #57410c;
+  border-radius: 999px;
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tombol-sekunder {
+  padding: 14px 26px;
+  font-weight: 600;
+  border-color: rgba(125, 100, 40, 0.35);
+  color: rgb(139, 80, 3);
+}
+
+.tombol-kecil-garis {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+.tombol-sekunder:hover,
+.tombol-kecil-garis:hover {
+  border-color: #e8b84b;
+  color: #e8b84b;
+}
+
+
+/* ---------------------- 4. BAGIAN HERO (khusus index.html) ---------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  margin-top: 24px;
+}
+
+.hero-latar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+
+.hero-lapisan {
+  position: relative;
+  padding: 80px 40px 50px;
+  display: grid;
+  gap: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  max-width: 18ch;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: #e8b84b;
+}
+
+.grup-tombol-hero {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Label kecil di atas judul, contoh: "Welcome to BuzzLightyear Music" */
+.label-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #e8b84b;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.label-eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff6f61;
+}
+
+.teks-pengantar {
+  color: #d9d2ec;
+  font-size: 1.04rem;
+  max-width: 52ch;
+}

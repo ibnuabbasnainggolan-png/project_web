@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar - BuzzLightyear Music</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/register.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="icon" type="image/png" href="../img/logo.png">
+</head>
+<body>
+
+  <header class="header-situs">
+    <div class="wadah navigasi">
+      <a href="../index.html" class="merek-navigasi">
+        <img src="../img/logo.png" alt="Logo BuzzLightyear Music">
+         <span>BuzzLightyear Music</span>
+      </a>
+
+      <!-- panel-menu-mobile: membungkus <nav> (daftar menu) + grup-akun
+           jadi SATU panel. Di layar HP, panel ini yang dibuka/ditutup
+           bersamaan lewat tombol hamburger di sebelah kanan (lihat aturMenuMobile() di file JS halaman ini) -->
+      <div class="panel-menu-mobile" id="panel-menu-mobile">
+        <nav aria-label="Navigasi utama">
+        <ul class="daftar-menu" id="daftar-menu">
+          <li><a href="../index.html" class="tautan-menu">Beranda</a></li>
+          <li><a href="musik.html" class="tautan-menu">Musik</a></li>
+          <li><a href="favorit.html" class="tautan-menu">Favorit</a></li>
+          <li><a href="playlist.html" class="tautan-menu">Playlist</a></li>
+          <li><a href="tentang.html" class="tautan-menu">Tentang</a></li>
+        </ul>
+      </nav>
+      <!-- grup-akun: tautan Masuk/Daftar bawaan, plus sapaan & tombol
+           Keluar yang ditampilkan/disembunyikan oleh register.js
+           tergantung status login pengguna -->
+      <div class="grup-akun" id="grup-akun">
+        <a href="login.html" class="tombol-kecil-garis" id="tautan-masuk">Masuk</a>
+        <a href="register.html" class="tombol-kecil-isi" id="tautan-daftar">Daftar</a>
+        <span class="sapaan-akun tersembunyi" id="sapaan-akun"></span>
+        <button type="button" class="tombol-kecil-garis tersembunyi" id="tombol-keluar">Keluar</button>
+      </div>
+      </div>
+
+      <!-- Tombol hamburger, hanya terlihat di layar HP (media.css) -->
+      <button type="button" class="tombol-menu-mobile" id="tombol-menu-mobile" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="panel-menu-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="wadah bagian-auth">
+      <div class="kartu-auth">
+        <div class="lambang-auth">
+          <img src="../img/logo.png" alt="Logo BuzzLightyear Music">
+        </div>
+        <h1>Buat Akun Baru</h1>
+        <p class="sub-judul-auth">Gabung dan mulai simpan lagu favorit dan playlistmu di BuzzLightyear Music.</p>
+
+        <form id="form-register" novalidate>
+          <div class="kelompok-bidang">
+            <label for="daftar-nama">Nama Lengkap</label>
+            <input type="text" id="daftar-nama" name="nama-lengkap" placeholder="Nama kamu">
+          </div>
+          <div class="kelompok-bidang">
+            <label for="daftar-email">Email</label>
+            <input type="email" id="daftar-email" name="email" placeholder="nama@email.com">
+          </div>
+          <div class="baris-dua-kolom">
+            <div class="kelompok-bidang">
+              <label for="daftar-sandi">Kata Sandi</label>
+              <input type="password" id="daftar-sandi" name="kata-sandi" placeholder="Minimal 6 karakter">
+            </div>
+            <div class="kelompok-bidang">
+              <label for="daftar-konfirmasi">Konfirmasi Sandi</label>
+              <input type="password" id="daftar-konfirmasi" name="konfirmasi-sandi" placeholder="Ulangi kata sandi">
+            </div>
+          </div>
+          <div class="pesan-status-auth" id="status-register"></div>
+          <button type="submit" class="tombol-kirim">Daftar Sekarang</button>
+        </form>
+
+        <p class="teks-alternatif-auth">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-situs">
+    <div class="wadah isi-footer">
+      <p>&copy; <span id="tahun-berjalan"></span> BuzzLightyear Music. Dibuat oleh Ibnu Abbas.</p>
+      <div class="tautan-footer">
+        <a href="favorit.html">Favorit</a>
+        <a href="playlist.html">Playlist</a>
+        <a href="tentang.html">Tentang</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- register.js: satu-satunya file JS untuk halaman ini -->
+  <script src="../js/register.js"></script>
+</body>
+</html>

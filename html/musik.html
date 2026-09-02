@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musik - BuzzLightyear Music</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/musik.css">
+  <link rel="stylesheet" href="../css/media.css">
+  <link rel="icon" type="image/png" href="../img/logo.png">
+</head>
+<body>
+
+  <header class="header-situs">
+    <div class="wadah navigasi">
+      <a href="../index.html" class="merek-navigasi">
+        <img src="../img/logo.png" alt="Logo BuzzLightyear Music">
+         <span>BuzzLightyear Music</span>
+      </a>
+
+      <!-- panel-menu-mobile: membungkus <nav> (daftar menu) + grup-akun
+           jadi SATU panel. Di layar HP, panel ini yang dibuka/ditutup
+           bersamaan lewat tombol hamburger di sebelah kanan (lihat aturMenuMobile() di file JS halaman ini) -->
+      <div class="panel-menu-mobile" id="panel-menu-mobile">
+        <nav aria-label="Navigasi utama">
+        <ul class="daftar-menu" id="daftar-menu">
+          <li><a href="../index.html" class="tautan-menu">Beranda</a></li>
+          <li><a href="musik.html" class="tautan-menu" aria-current="page">Musik</a></li>
+          <li><a href="favorit.html" class="tautan-menu">Favorit</a></li>
+          <li><a href="playlist.html" class="tautan-menu">Playlist</a></li>
+          <li><a href="tentang.html" class="tautan-menu">Tentang</a></li>
+        </ul>
+      </nav>
+
+      <div class="grup-akun" id="grup-akun">
+        <a href="login.html" class="tombol-kecil-garis" id="tautan-masuk">Masuk</a>
+        <a href="register.html" class="tombol-kecil-isi" id="tautan-daftar">Daftar</a>
+        <span class="sapaan-akun tersembunyi" id="sapaan-akun"></span>
+        <button type="button" class="tombol-kecil-garis tersembunyi" id="tombol-keluar">Keluar</button>
+      </div>
+      </div>
+
+      <!-- Tombol hamburger, hanya terlihat di layar HP (media.css) -->
+      <button type="button" class="tombol-menu-mobile" id="tombol-menu-mobile" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="panel-menu-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="wadah seksi">
+      <div class="judul-seksi">
+        <div>
+          <h1 class="judul-halaman">Jelajahi Koleksi Musik</h1>
+          <p class="sub-judul-halaman">
+            Data lagu diambil langsung dari REST API
+            <code>golan-api.vercel.app/music.json</code> menggunakan <strong>fetch()</strong>.
+            Klik <strong>"Putar"</strong> untuk mendengarkan lagunya langsung di halaman
+            ini, ikon hati (♥) untuk menandai favorit, dan tombol <strong>"+"</strong> untuk
+            menambahkan lagu ke salah satu <a href="playlist.html" class="tautan-aksen">playlist</a>-mu.
+          </p>
+        </div>
+      </div>
+
+      <!-- Formulir pencarian (form + input, komponen wajib) -->
+      <form class="panel-kontrol-musik" onsubmit="return false;" aria-label="Pencarian lagu">
+        <div class="bidang-cari">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <label for="kotak-cari" class="teks-tersembunyi">Cari lagu atau artis</label>
+          <input type="text" id="kotak-cari" name="kata-kunci" placeholder="Cari judul lagu, nama artis, atau lirik yang teringat...">
+        </div>
+        <button type="button" id="tombol-acak" class="tombol-acak">🎲 Acak</button>
+      </form>
+
+      <p class="info-hasil" id="info-hasil">Memuat data lagu...</p>
+
+      <!-- Wadah kisi lagu, seluruh isinya dibangun lewat JavaScript (musik.js) -->
+      <div class="kisi-musik" id="kisi-musik"></div>
+    </section>
+  </main>
+
+  <!-- ===================== MODAL PEMUTAR MUSIK ===================== -->
+  <!-- Menampilkan lagu (beserta seluruh lagu satu album) langsung di
+       halaman kita, memakai iframe embed resmi Apple Music. Isi iframe
+       dibuat/dibongkar lewat JavaScript (musik.js). -->
+  <div class="modal-pemutar" id="modal-pemutar" aria-hidden="true">
+    <div class="latar-modal" id="latar-modal"></div>
+    <div class="kotak-modal" role="dialog" aria-modal="true" aria-labelledby="judul-modal-pemutar">
+      <div class="kepala-modal">
+        <div>
+          <p class="label-modal">Sedang diputar</p>
+          <h2 class="judul-modal" id="judul-modal-pemutar"></h2>
+        </div>
+        <button type="button" class="tombol-tutup-modal" id="tombol-tutup-modal" aria-label="Tutup pemutar">✕</button>
+      </div>
+      <div class="wadah-iframe-pemutar" id="wadah-iframe-pemutar"></div>
+      <p class="keterangan-modal">Pemutar ini menampilkan seluruh lagu dalam satu album/playlist yang sama, disematkan langsung dari Apple Music.</p>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL TAMBAH KE PLAYLIST ===================== -->
+  <!-- Menampilkan daftar playlist milik pengguna supaya lagu yang dipilih
+       bisa ditambahkan (atau dihapus) dari playlist tersebut. Isinya
+       dibangun/dibongkar lewat JavaScript (musik.js). -->
+  <div class="modal-playlist" id="modal-playlist" aria-hidden="true">
+    <div class="latar-modal" id="latar-modal-playlist"></div>
+    <div class="kotak-modal kotak-modal-playlist" role="dialog" aria-modal="true" aria-labelledby="judul-modal-playlist">
+      <div class="kepala-modal">
+        <div>
+          <p class="label-modal">Playlist</p>
+          <h2 class="judul-modal" id="judul-modal-playlist"></h2>
+        </div>
+        <button type="button" class="tombol-tutup-modal" id="tombol-tutup-modal-playlist" aria-label="Tutup jendela playlist">✕</button>
+      </div>
+
+      <div class="daftar-pilihan-playlist" id="daftar-pilihan-playlist"></div>
+
+      <form id="form-playlist-baru" class="form-playlist-baru">
+        <input type="text" id="nama-playlist-baru" name="nama-playlist-baru" placeholder="Nama playlist baru...">
+        <button type="submit" class="tombol-buat-playlist">+ Buat Playlist</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer-situs">
+    <div class="wadah isi-footer">
+      <p>&copy; <span id="tahun-berjalan"></span> BuzzLightyear Music. Dibuat oleh Ibnu Abbas.</p>
+      <div class="tautan-footer">
+        <a href="favorit.html">Favorit</a>
+        <a href="playlist.html">Playlist</a>
+        <a href="tentang.html">Tentang</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- musik.js: satu-satunya file JS untuk halaman ini (navigasi, status
+       login, penyimpanan favorit & playlist, modal pemutar, modal pilih
+       playlist, dan logika pencarian/katalog lagu) -->
+  <script src="../js/musik.js"></script>
+  <script src="../js/musik.js"></script>
+</body>
+</html>

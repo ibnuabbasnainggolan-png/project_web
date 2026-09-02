@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuzzLightyear Music - Dengarkan Musik Favoritmu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/media.css">
+  <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+<body>
+
+  <header class="header-situs">
+    <div class="wadah navigasi">
+      <a href="index.html" class="merek-navigasi">
+        <img src="img/logo.png" alt="Logo BuzzLightyear Music">
+        <span>BuzzlightyearMusic</span>
+      </a>
+
+      <!-- panel-menu-mobile: membungkus <nav> (daftar menu) + grup-akun
+           jadi SATU panel. Di layar HP, panel ini yang dibuka/ditutup
+           bersamaan lewat tombol hamburger di sebelah kanan (lihat aturMenuMobile() di file JS halaman ini) -->
+      <div class="panel-menu-mobile" id="panel-menu-mobile">
+        <nav aria-label="Navigasi utama">
+        <ul class="daftar-menu" id="daftar-menu">
+          <li><a href="index.html" class="tautan-menu" aria-current="page">Beranda</a></li>
+          <li><a href="html/musik.html" class="tautan-menu">Musik</a></li>
+          <li><a href="html/favorit.html" class="tautan-menu">Favorit</a></li>
+          <li><a href="html/playlist.html" class="tautan-menu">Playlist</a></li>
+          <li><a href="html/tentang.html" class="tautan-menu">Tentang</a></li>
+        </ul>
+      </nav>
+
+      <div class="grup-akun" id="grup-akun">
+        <a href="html/login.html" class="tombol-kecil-garis" id="tautan-masuk">Masuk</a>
+        <a href="html/register.html" class="tombol-kecil-isi" id="tautan-daftar">Daftar</a>
+        <span class="sapaan-akun tersembunyi" id="sapaan-akun"></span>
+        <button type="button" class="tombol-kecil-garis tersembunyi" id="tombol-keluar">Keluar</button>
+      </div>
+      </div>
+
+      <!-- Tombol hamburger, hanya terlihat di layar HP (media.css) -->
+      <button type="button" class="tombol-menu-mobile" id="tombol-menu-mobile" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="panel-menu-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <div class="wadah">
+      <section class="hero">
+        <img src="img/latar-hero.png" alt="" class="hero-latar" aria-hidden="true">
+        <div class="hero-lapisan">
+          <p class="label-eyebrow">Welcome to BuzzLightyear Music</p>
+          <h1>Putar ulang <em>kenangan</em>, temukan lagu favoritmu.</h1>
+          <p class="teks-pengantar">
+            BuzzLightyear Music menampilkan lagu-lagu langsung dari embed apple music
+            dalam satu album. Cari judul, telusuri artis, tandai favoritmu,
+            kumpulkan lagu ke dalam playlist buatanmu sendiri, dan putar semuanya
+            langsung di halaman ini tanpa pindah situs.
+          </p>
+          <div class="grup-tombol-hero">
+            <a href="html/musik.html" class="tombol-utama">Jelajahi Musik →</a>
+            <a href="html/playlist.html" class="tombol-sekunder">Buat Playlist</a>
+            <a href="html/favorit.html" class="tombol-sekunder">Lihat Favoritku</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer-situs">
+    <div class="wadah isi-footer">
+      <p>&copy; <span id="tahun-berjalan"></span> BuzzLightyear Music. Dibuat oleh Ibnu Abbas.</p>
+      <div class="tautan-footer">
+        <a href="html/favorit.html">Favorit</a>
+        <a href="html/playlist.html">Playlist</a>
+        <a href="html/tentang.html">Tentang</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- index.js: satu-satunya file JS untuk halaman ini -->
+  <script src="js/index.js"></script>
+</body>
+</html>
